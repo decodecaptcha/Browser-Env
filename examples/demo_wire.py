@@ -38,7 +38,7 @@ class WireBrowserEnv(BrowserEnv):
                         sub_status_code=200, 
                         sub_headers={}, 
                         sub_body=None, 
-                        headless=False, 
+                        headless=True, 
                         images_enabled = False, 
                         incognito=False, 
                         stealth=False, 

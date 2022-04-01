@@ -1,3 +1,6 @@
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__)) + '/' + 'wirebrowserenv'))
 import seleniumwire.undetected_chromedriver as uc
 from seleniumwire import webdriver
 
