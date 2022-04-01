@@ -1,0 +1,14 @@
+blinker==1.4
+Brotli==1.0.9
+certifi==2020.6.20
+h2==4.1.0
+hyperframe==6.0.1
+packaging==21.3
+pyasn1==0.4.8
+pydivert==2.1.0
+pyOpenSSL==22.0.0
+pyparsing==2.4.7
+selenium==3.141.0
+setuptools==39.0.1
+wsproto==0.15.0
+zstandard==0.14.1
