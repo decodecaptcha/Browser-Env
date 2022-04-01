@@ -195,7 +195,7 @@ if __name__ == "__main__":
         sub_body=sub_body, 
         headless=False, 
         images_enabled = False, 
-        incognito=True, 
+        incognito=False, 
         stealth=False, 
         proxy=None, 
         wait_for=wait_for, 
