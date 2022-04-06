@@ -215,6 +215,7 @@ if __name__ == "__main__":
     # var n,r,i,a,s,c,u;
     # url = 'https://www.posti.fi/fi/seuranta'
     # interceptor_url = 'https://www.posti.fi/featureEmbed'
+    # wait_for = '//div[@aria-live="polite"]'
     # insert_text = 'window.__tokens={"id_token": t.id_token, "role_token": t.role_tokens[0].token};'
     # split_word = 'case 0:'
     # starts_word = 'return n=t.id_token'
@@ -222,6 +223,7 @@ if __name__ == "__main__":
 
     url = 'https://httpbin.org/ip'
     interceptor_url = 'https://httpbin.org/ip'
+    wait_for = ''
     insert_text = '这是已经替换的页面'
     split_word = '.'
     starts_word = '135'
@@ -245,6 +247,7 @@ if __name__ == "__main__":
         incognito=False, 
         stealth=False, 
         proxy=None, 
+        wait_for=wait_for,
         time_delay=3, 
         timeout=20, 
     )
