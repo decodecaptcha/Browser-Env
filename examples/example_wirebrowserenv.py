@@ -16,9 +16,9 @@ class FinlandPostEnv(object):
             url=self.url, 
 
             intercept_enabled=self.intercept_enabled, 
-            intercept_url=self.intercept_url, 
-            intercept_mode=self.intercept_mode,
-            intercept_params=self.intercept_params,
+            # intercept_url=self.intercept_url, 
+            # intercept_mode=self.intercept_mode,
+            # intercept_params=self.intercept_params,
 
             headless=self.headless, 
             images_enabled=self.images_enabled, 
@@ -30,7 +30,8 @@ class FinlandPostEnv(object):
         )
 
     def __del__(self):
-        self.env.driver.close()
+        if self.intercept_enabled:
+            self.env.driver.close()
 
     def set_params(self):
         self.headless = False
@@ -41,22 +42,9 @@ class FinlandPostEnv(object):
         self.time_delay = 0
         self.timeout = 20
 
-        self.intercept_enabled = True
-
-        self.url = 'https://httpbin.org/ip'
-        self.intercept_url = 'https://httpbin.org/ip'
-        insert_text = '这是已经替换的页面'
-        split_word = '.'
-        starts_word = '135'
+        self.intercept_enabled = False
         self.script = 'return window.document.body.innerHTML'
-
-        self.intercept_mode = 'modify'
-        self.intercept_params={
-            'modify_insert_text': insert_text,
-            'modify_split_word': split_word,
-            'modify_starts_word': starts_word,
-        }
-
+        self.url = 'https://httpbin.org/ip'
 
     def get_result(self):
         result = self.env.execute_script(self.script)
@@ -68,8 +56,3 @@ if __name__ == "__main__":
         env = FinlandPostEnv()
         result = env.get_result()
         print(result)
-
-
-
-
-

@@ -101,10 +101,10 @@ class WireBrowserEnv(BrowserEnv):
 
         # 拦截网络请求
         self._intercept_enabled = intercept_enabled
-        self._intercept_mode = intercept_mode
         if self._intercept_enabled:
-
+            
             # 拦截模式
+            self._intercept_mode = intercept_mode
             if self._intercept_mode == 'modify':
                 self.intercept_url = intercept_url
                 # 关键位置查找并插入文本
