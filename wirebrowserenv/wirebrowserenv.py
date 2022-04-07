@@ -7,26 +7,53 @@ import os
 import sys
 import time
 
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
+# from selenium.common.exceptions import TimeoutException
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.support import expected_conditions as EC
+# from selenium.webdriver.support.wait import WebDriverWait
 
 from seleniumwire.thirdparty.mitmproxy.net.http import encoding as decoder
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
-
+# from seleniumwire.utils import decode
 from seleniumwire import webdriver
+from browserenv import BrowserEnv
+# from browserenv import STEALTH_JS_PATH
+# STEALTH_JS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "stealth.min.js"))
+logger = logging.getLogger(__name__)
 
-STEALTH_JS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "stealth.min.js"))
+class WireBrowserEnv(BrowserEnv):
+    """
+    支持 拦截网络请求 的浏览器环境
 
-
-class WireBrowserEnv(object):
-    """支持拦截网络请求 的浏览器环境
     作用:
         捕获的 HTTP 和 HTTPS 请求
         拦截请求和响应
         即时修改标题、参数、正文内容
+    
+    :param url: 打开目标网站的 url
+    :param intercept_enabled: 拦截开关
+    :param intercept_url: 拦截的 url
+    :param intercept_mode: 拦截模式
+    :param intercept_params: 拦截参数
+        intercept_params = {
+                    'modify_insert_text': None,
+                    'modify_split_word': None,
+                    'modify_starts_word': None,
+
+                    'mock_status_code':200, 
+                    'mock_headers':{}, 
+                    'mock_body':None,
+                }
+    :param headless: 无头模式
+    :param images_enabled: 图像开关
+    :param incognito: 无痕模式
+    :param stealth: 伪装模式, 有效绕过 webdriver 等检测
+
+    :param proxy: Browser 所使用的代理, 例如: http://127.0.0.1:1080
+    :param wait_for: 等待目标网站, 页面某元素加载完成
+    :param time_delay: 根据网速, 给多一点延迟时间让页面加载, 避免加载失败
+    :param timeout: 若在指定时间超时, 则报错
     """
     def __init__(self, url=None, 
                     intercept_enabled=False, 
@@ -43,31 +70,6 @@ class WireBrowserEnv(object):
                     timeout=20
         ):
 
-        """
-        :param url: 打开目标网站的 url
-        :param intercept_enabled: xxx
-        :param intercept_url: 拦截的 url
-        :param intercept_mode: 拦截模式
-        :param intercept_params: 拦截参数
-            intercept_params = {
-                        'modify_insert_text': None,
-                        'modify_split_word': None,
-                        'modify_starts_word': None,
-
-                        'mock_status_code':200, 
-                        'mock_headers':{}, 
-                        'mock_body':None,
-                    }
-        :param headless: 无头模式
-        :param images_enabled: 图像开关
-        :param incognito: 无痕模式
-        :param stealth: 伪装模式, 有效绕过 webdriver 等检测
-
-        :param proxy: Browser 所使用的代理, 例如: http://127.0.0.1:1080
-        :param wait_for: 等待目标网站, 页面某元素加载完成
-        :param time_delay: 根据网速, 给多一点延迟时间让页面加载, 避免加载失败
-        :param timeout: 若在指定时间超时, 则报错
-        """
         print(self.__class__.__name__, ' is loading...')
         options = webdriver.ChromeOptions()
 
@@ -181,77 +183,75 @@ class WireBrowserEnv(object):
         modified_text = split_word.join(text_list)
         return modified_text
 
-    def stealth(self):
-        with open(STEALTH_JS_PATH) as file:
-            stealth_min_js = file.read()
-        self.driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
-                "source": stealth_min_js
-            })
+    # def stealth(self):
+    #     with open(STEALTH_JS_PATH) as file:
+    #         stealth_min_js = file.read()
+    #     self.driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
+    #             "source": stealth_min_js
+    #         })
 
-    def wait_for_page(self, url, wait_for, timeout):
-        _url = url
-        _wait_for = wait_for
-        _timeout = timeout
-        if _wait_for:
-            try:
-                print('Waiting for ', _wait_for)
-                WebDriverWait(self.driver, _timeout).until(
-                    EC.presence_of_element_located((By.XPATH, _wait_for))
-                )
-            except TimeoutException:
-                print('TimeoutException waiting for ', _wait_for, ', url: ', _url)
-                self.driver.close()
+    # def wait_for_page(self, url, wait_for, timeout):
+    #     _url = url
+    #     _wait_for = wait_for
+    #     _timeout = timeout
+    #     if _wait_for:
+    #         try:
+    #             print('Waiting for ', _wait_for)
+    #             WebDriverWait(self.driver, _timeout).until(
+    #                 EC.presence_of_element_located((By.XPATH, _wait_for))
+    #             )
+    #         except TimeoutException:
+    #             print('TimeoutException waiting for ', _wait_for, ', url: ', _url)
+    #             self.driver.close()
 
-    def execute_script(self, script):
-        return self.driver.execute_script(script)
+    # def execute_script(self, script):
+    #     return self.driver.execute_script(script)
 
-    def refresh_page(self):
-        """刷新页面"""
-        self.driver.get(self.url)
-        self.wait_for_page(self.url, self.wait_for, self.timeout)
+    # def refresh_page(self):
+    #     """刷新页面"""
+    #     self.driver.get(self.url)
+    #     self.wait_for_page(self.url, self.wait_for, self.timeout)
 
 
 if __name__ == "__main__":
-    # var n,r,i,a,s,c,u;
     # url = 'https://www.posti.fi/fi/seuranta'
     # interceptor_url = 'https://www.posti.fi/featureEmbed'
     # wait_for = '//div[@aria-live="polite"]'
     # insert_text = 'window.__tokens={"id_token": t.id_token, "role_token": t.role_tokens[0].token};'
     # split_word = 'case 0:'
     # starts_word = 'return n=t.id_token'
+    for _ in range(5):
+        url = 'https://httpbin.org/ip'
+        interceptor_url = 'https://httpbin.org/ip'
+        wait_for = ''
+        insert_text = '这是已经替换的页面'
+        split_word = '.'
+        starts_word = '135'
 
+        intercept_mode = 'modify'
+        intercept_params={
+            'modify_insert_text': insert_text,
+            'modify_split_word': split_word,
+            'modify_starts_word': starts_word,
+        }
 
-    url = 'https://httpbin.org/ip'
-    interceptor_url = 'https://httpbin.org/ip'
-    wait_for = ''
-    insert_text = '这是已经替换的页面'
-    split_word = '.'
-    starts_word = '135'
+        wbe = WireBrowserEnv(
+            url=url, 
+            intercept_enabled=True, 
+            intercept_url=interceptor_url, 
+            intercept_mode='modify',
+            intercept_params=intercept_params,
 
-    intercept_mode = 'modify'
-    intercept_params={
-        'modify_insert_text': insert_text,
-        'modify_split_word': split_word,
-        'modify_starts_word': starts_word,
-    }
-
-    wbe = WireBrowserEnv(
-        url=url, 
-        intercept_enabled=True, 
-        intercept_url=interceptor_url, 
-        intercept_mode='modify',
-        intercept_params=intercept_params,
-
-        headless=False, 
-        images_enabled = True, 
-        incognito=False, 
-        stealth=False, 
-        proxy=None, 
-        wait_for=wait_for,
-        time_delay=3, 
-        timeout=20, 
-    )
-    # script = 'return window.__tokens'
-    script = 'return window.document.body.innerHTML'
-    result = wbe.execute_script(script)
-    print(result if result else 'None')
+            headless=False, 
+            images_enabled = True, 
+            incognito=False, 
+            stealth=False, 
+            proxy=None, 
+            wait_for=wait_for,
+            time_delay=3, 
+            timeout=20, 
+        )
+        # script = 'return window.__tokens'
+        script = 'return window.document.body.innerHTML'
+        result = wbe.execute_script(script)
+        print(result if result else 'None')

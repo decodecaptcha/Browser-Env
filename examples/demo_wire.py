@@ -12,11 +12,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+import os
 import sys
-sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__)) + '/' + 'wirebrowserenv'))
-# print(os.path.abspath(os.path.dirname(os.path.dirname(__file__)) + '/' + 'wirebrowserenv'))
+sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
+from wirebrowserenv.seleniumwire import webdriver
 
-from seleniumwire import webdriver
+# from seleniumwire import webdriver
 from browserenv import BrowserEnv
 from browserenv import STEALTH_JS_PATH
 
