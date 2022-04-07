@@ -46,7 +46,7 @@ class Chrome(InspectRequestsMixin, DriverCommonMixin, uc.Chrome):
         except KeyError:
             chrome_options = ChromeOptions()
 
-        log.info('Using undetected_chromedriver')
+        log.debug('Using undetected_chromedriver')
 
         # We need to point Chrome back to Selenium Wire since the executable
         # will be started separately by undetected_chromedriver.

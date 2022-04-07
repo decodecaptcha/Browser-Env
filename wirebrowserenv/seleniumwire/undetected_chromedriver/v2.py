@@ -1,1 +1,4 @@
-from .webdriver import Chrome, ChromeOptions  # noqa: F401
+# for backward compatibility
+import sys
+
+sys.modules[__name__] = sys.modules[__package__]
