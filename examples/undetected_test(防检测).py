@@ -1,12 +1,16 @@
 import os
 import sys
+import time
 sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 import wirebrowserenv.seleniumwire.undetected_chromedriver.v2 as uc
-# from selenium.webdriver.chrome.options import Options
-# this code will be executed twice (main process & sub process)
-print("Python multiprocessing documentation is worth a read")
+
+# print("Python multiprocessing documentation is worth a read")
+print(__name__)
 
 if __name__ == '__main__':
+    st = time.time()
+
+    # url = 'http://httpbin.org/ip'
     url = 'https://bot.sannysoft.com/'
     # url = 'https://nowsecure.nl'
 
@@ -15,13 +19,16 @@ if __name__ == '__main__':
     options.add_argument("--incognito")
     options.add_argument('--blink-settings=imagesEnabled=false')
 
-    # 禁止日志输出
-    # options.add_argument('–disable-gpu')
-    # options.add_argument('log-level=3')
-    # options.add_experimental_option('excludeSwitches', ['enable-logging'])
-    
     # 浏览器版本
-    driver = uc.Chrome(options=options, version_main=99, delay=0)
+    driver = uc.Chrome(
+        options=options, 
+        log_level=3, 
+        headless=True, 
+        delay=0, 
+        version_main=99
+    )
     driver.get(url)
-    print(driver.page_source)
-    # input()
+    print(driver.page_source[:100])
+    driver.close()
+
+    print('耗时：', time.time()-st, 's')
