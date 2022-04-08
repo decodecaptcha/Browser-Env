@@ -11,12 +11,15 @@ class Undetected:
         options = uc.ChromeOptions()
         options.add_argument("--incognito")
         options.add_argument('--blink-settings=imagesEnabled=false')
+        # 关闭欢迎页
+        # options.arguments.extend(["--no-default-browser-check", "--no-first-run"])
         driver = uc.Chrome(
             options=options,
             log_level=3,
             headless=False,
             delay=0,
             version_main=99,
+            suppress_welcome=False
         )
 
         # url = 'http://httpbin.org/ip'
