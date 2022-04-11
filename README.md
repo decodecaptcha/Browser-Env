@@ -8,7 +8,7 @@ Web crawlers use the real browser environment.
 或对付 SecurityWorker, jsmvp 类型加固
 
 # wirebrowserenv
-在 basebrowserenv 基础上, 功能更加强大, 支持拦截网络请求 的浏览器环境
+在 basebrowserenv 基础上, wirebrowserenv 功能更加强大, 支持拦截网络请求 的浏览器环境
 作用:
     捕获的 HTTP 和 HTTPS 请求
     拦截请求和响应
