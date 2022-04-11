@@ -18,8 +18,7 @@ class Undetected:
             log_level=3,
             headless=False,
             delay=0,
-            version_main=99,
-            suppress_welcome=False
+            version_main=99
         )
 
         # url = 'http://httpbin.org/ip'

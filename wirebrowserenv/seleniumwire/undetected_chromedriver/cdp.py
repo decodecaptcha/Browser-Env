@@ -83,7 +83,7 @@ class CDP:
             )
             self._last_resp = await ws.recv()
             self._last_json = json.loads(self._last_resp)
-            self.log.info(self._last_json)
+            self.log.debug(self._last_json)
 
     def get(self, uri):
         resp = self._session.get(self.server_addr + uri)

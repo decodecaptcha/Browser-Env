@@ -219,7 +219,7 @@ class Patcher(object):
 
         :return: False on failure, binary name on success
         """
-        logger.info("patching driver executable %s" % self.executable_path)
+        logger.debug("patching driver executable %s" % self.executable_path)
 
         linect = 0
         replacement = self.gen_random_cdc()
