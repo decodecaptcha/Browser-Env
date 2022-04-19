@@ -27,10 +27,10 @@ undetected-chromedriver==3.1.5.post4
 轮子来源于: https://github.com/wkeeling/selenium-wire
 
 # wirebrowserenv_uc
-    对 undetected-chromedriver 的集成,
-    优化的 Selenium Chromedriver 补丁,
-    不会触发 Distill Network / Imperva / DataDome / Botprotect.io 等反僵尸服务,
-    自动下载驱动程序二进制文件并对其进行修补。
+对 undetected-chromedriver 的集成,
+优化的 Selenium Chromedriver 补丁,
+不会触发 Distill Network / Imperva / DataDome / Botprotect.io 等反僵尸服务,
+自动下载驱动程序二进制文件并对其进行修补。
 
 # v8env
 适用于 Python 的最小的现代嵌入式 V8 引擎
