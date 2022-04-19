@@ -1,15 +1,14 @@
 import os
 import sys
 
-sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))))
-from v8env.py_mini_racer import MiniRacer
+import execjs
 
 JS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), 'bilibili_login.js'))
 
 with open(JS_PATH, 'r', encoding='utf-8') as f:
     js_code = f.read()
 
-def v8env_test():
+def execjs_test():
     key = '''
     -----BEGIN PUBLIC KEY-----
     MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDjb4V7EidX/ym28t2ybo0U6t0n
@@ -19,13 +18,11 @@ def v8env_test():
     -----END PUBLIC KEY-----
     '''
     pwd = "123456"
-    ctx = MiniRacer()
-    ctx.eval(js_code)
+    ctx = execjs.compile(js_code)
     password = ctx.call('test', key, "5ea852380104a6fd", pwd)
-    # print(password)
     return password
 
 
 if __name__ == '__main__':
-    password = v8env_test()
+    password = execjs_test()
     print(password)

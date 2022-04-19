@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-# @Author : 艾登Aiden
-# @Email : aidenlen@163.com
-# @Date : 2022-01-19
 import logging
 import os
 import time
