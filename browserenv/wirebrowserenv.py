@@ -124,43 +124,43 @@ class WireBrowserEnv(BrowserEnv):
 
 
 
-# if __name__ == "__main__":
-#     # url = 'https://www.posti.fi/fi/seuranta'
-#     # interceptor_url = 'https://www.posti.fi/featureEmbed'
-#     # # wait_for = '//div[@aria-live="polite"]'
-#     # wait_for = ''
-#     # old_text = 'case 0:return n=t.id_token'
-#     # new_text = 'case 0:window.__tokens={"id_token": t.id_token, "role_token": t.role_tokens[0].token};return n=t.id_token'
-#     # script = 'return window.__tokens'
+if __name__ == "__main__":
+    # url = 'https://www.posti.fi/fi/seuranta'
+    # interceptor_url = 'https://www.posti.fi/featureEmbed'
+    # # wait_for = '//div[@aria-live="polite"]'
+    # wait_for = ''
+    # old_text = 'case 0:return n=t.id_token'
+    # new_text = 'case 0:window.__tokens={"id_token": t.id_token, "role_token": t.role_tokens[0].token};return n=t.id_token'
+    # script = 'return window.__tokens'
 
-#     url = 'https://httpbin.org/ip'
-#     interceptor_url = 'https://httpbin.org/ip'
-#     wait_for = ''
-#     old_text = 'origin'
-#     new_text = '这是已经替换的页面'
-#     script = 'return window.document.body.innerHTML'
+    url = 'https://httpbin.org/ip'
+    interceptor_url = 'https://httpbin.org/ip'
+    wait_for = ''
+    old_text = 'origin'
+    new_text = '这是已经替换的页面'
+    script = 'return window.document.body.innerHTML'
 
-#     intercept_mode = 'modify'
-#     intercept_params={
-#         'modify_old_text': old_text,
-#         'modify_new_text': new_text,
-#     }
+    intercept_mode = 'modify'
+    intercept_params={
+        'modify_old_text': old_text,
+        'modify_new_text': new_text,
+    }
 
-#     wbe = WireBrowserEnv(
-#         url=url, 
-#         intercept_enabled=True, 
-#         intercept_url=interceptor_url, 
-#         intercept_mode='modify',
-#         intercept_params=intercept_params,
+    wbe = WireBrowserEnv(
+        url=url, 
+        intercept_enabled=True, 
+        intercept_url=interceptor_url, 
+        intercept_mode='modify',
+        intercept_params=intercept_params,
 
-#         headless=False, 
-#         images_enabled=True, 
-#         incognito=False, 
-#         stealth=False, 
-#         proxy=None, 
-#         wait_for=wait_for,
-#         delay_time=0, 
-#         timeout=20, 
-#     )
-#     result = wbe.execute_script(script)
-#     print(result if result else 'None')
+        headless=False, 
+        images_enabled=True, 
+        incognito=False, 
+        stealth=False, 
+        proxy=None, 
+        wait_for=wait_for,
+        delay_time=0, 
+        timeout=20, 
+    )
+    result = wbe.execute_script(script)
+    print(result if result else 'None')
