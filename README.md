@@ -6,12 +6,14 @@ Web crawlers use the real browser environment.
 依赖要求:
 Python 3.6+
 selenium 3.4.0+
-Chrome 浏览器应用版本 99+
+Chrome 浏览器应用版本 92+
 
 本人实测的依赖版本:
-selenium==4.0.0
-selenium-wire==4.6.3
-undetected-chromedriver==3.1.5.post4
+Python 3.6.9
+selenium-wire==4.6.0
+undetected-chromedriver==3.0.6
+selenium==3.141.0
+Chrome 浏览器应用版本 92.0.4515.159
 
 # browserenv
 基础的浏览器环境, 用于高度模拟 真实浏览器环境 执行js脚本
@@ -19,6 +21,7 @@ undetected-chromedriver==3.1.5.post4
 
 # wirebrowserenv
 在 browserenv 基础上, wirebrowserenv 功能更加强大, 支持拦截网络请求 的浏览器环境
+
 作用:
     捕获的 HTTP 和 HTTPS 请求
     拦截请求和响应
@@ -38,3 +41,11 @@ undetected-chromedriver==3.1.5.post4
     执行js脚本
 
 轮子来源于: https://github.com/sqreen/PyMiniRacer
+
+# 报错
+问题:
+    Python 3.7以下版本
+    SyntaxError: future feature annotations is not defined
+
+解决方法：
+    直接注释掉 # from __future__ import annotations 即可

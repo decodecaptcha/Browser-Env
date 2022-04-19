@@ -3,7 +3,9 @@ import logging
 import os
 import sys
 import time
-import seleniumwire.undetected_chromedriver as uc
+# import seleniumwire.undetected_chromedriver as uc
+import seleniumwire.undetected_chromedriver.v2 as uc
+# TODO pyhton <=py37 注释 from __future__ import annotations
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 # from browserenv import BrowserEnv
@@ -61,9 +63,8 @@ class WireBrowserEnvUC(WireBrowserEnv):
     def set_driver(self):
         self.driver = uc.Chrome(
             options=self.options,
-            version_main=99, # 自己浏览器版本
+            version_main=92, # 自己浏览器版本
             log_level=3,
-            suppress_welcome=False,
             delay=0,
             seleniumwire_options={}
         )
@@ -75,51 +76,51 @@ class WireBrowserEnvUC(WireBrowserEnv):
         return self.driver
 
 
-# if __name__ == "__main__":
-#     st = time.time()
+if __name__ == "__main__":
+    st = time.time()
 
-#     # url = 'https://www.posti.fi/fi/seuranta'
-#     # interceptor_url = 'https://www.posti.fi/featureEmbed'
-#     # # wait_for = '//div[@aria-live="polite"]'
-#     # wait_for = ''
-#     # old_text = 'case 0:return n=t.id_token'
-#     # new_text = 'case 0:window.__tokens={"id_token": t.id_token, "role_token": t.role_tokens[0].token};return n=t.id_token'
-#     # script = 'return window.__tokens'
-#     # delay_time=3
+    # url = 'https://www.posti.fi/fi/seuranta'
+    # interceptor_url = 'https://www.posti.fi/featureEmbed'
+    # # wait_for = '//div[@aria-live="polite"]'
+    # wait_for = ''
+    # old_text = 'case 0:return n=t.id_token'
+    # new_text = 'case 0:window.__tokens={"id_token": t.id_token, "role_token": t.role_tokens[0].token};return n=t.id_token'
+    # script = 'return window.__tokens'
+    # delay_time=3
 
-#     url = 'https://httpbin.org/ip'
-#     interceptor_url = 'https://httpbin.org/ip'
-#     wait_for = ''
-#     old_text = 'origin'
-#     new_text = '这是已经替换的页面'
-#     script = 'return window.document.body.innerHTML'
-#     delay_time=0
+    url = 'https://httpbin.org/ip'
+    interceptor_url = 'https://httpbin.org/ip'
+    wait_for = ''
+    old_text = 'origin'
+    new_text = '这是已经替换的页面'
+    script = 'return window.document.body.innerHTML'
+    delay_time=0
 
 
-#     intercept_mode = 'modify'
-#     intercept_params={
-#         'modify_old_text': old_text,
-#         'modify_new_text': new_text,
-#     }
-#     wbe = WireBrowserEnvUC(
-#         url=url, 
-#         intercept_enabled=True, 
-#         intercept_url=interceptor_url, 
-#         intercept_mode='modify',
-#         intercept_params=intercept_params,
-#         headless=True, 
-#         images_enabled=False, 
-#         incognito=True, 
-#         stealth=False, 
-#         proxy=None, 
-#         wait_for=wait_for,
-#         delay_time=delay_time, 
-#         timeout=20
-#     )
-#     result = wbe.execute_script(script)
-#     print(result if result else 'None')
+    intercept_mode = 'modify'
+    intercept_params={
+        'modify_old_text': old_text,
+        'modify_new_text': new_text,
+    }
+    wbe = WireBrowserEnvUC(
+        url=url, 
+        intercept_enabled=True, 
+        intercept_url=interceptor_url, 
+        intercept_mode='modify',
+        intercept_params=intercept_params,
+        headless=True, 
+        images_enabled=False, 
+        incognito=True, 
+        stealth=False, 
+        proxy=None, 
+        wait_for=wait_for,
+        delay_time=delay_time, 
+        timeout=20
+    )
+    result = wbe.execute_script(script)
+    print(result if result else 'None')
 
-#     print("启动耗时: ", time.time() - st)
+    print("启动耗时: ", time.time() - st)
 
 # TODO:
 # 测试url 'https://httpbin.org/ip'
