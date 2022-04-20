@@ -3,12 +3,15 @@ import logging
 import os
 import sys
 import time
-# import seleniumwire.undetected_chromedriver as uc
+
 import seleniumwire.undetected_chromedriver.v2 as uc
-# TODO pyhton <=py37 注释 from __future__ import annotations
+
+# TODO 
+# 报错: SyntaxError: future feature annotations is not defined
+# 若 Pyhton < 3.7 则需关闭类型延迟求值
+# 解决方法: 注释掉 from __future__ import annotations
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
-# from browserenv import BrowserEnv
 from wirebrowserenv import WireBrowserEnv
 
 logger = logging.getLogger(__name__)
