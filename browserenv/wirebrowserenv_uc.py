@@ -66,7 +66,7 @@ class WireBrowserEnvUC(WireBrowserEnv):
     def set_driver(self):
         self.driver = uc.Chrome(
             options=self.options,
-            version_main=92, # 自己浏览器版本
+            version_main=98, # 自己浏览器版本
             log_level=3,
             delay=0,
             seleniumwire_options={}

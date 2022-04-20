@@ -13,7 +13,7 @@ sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 from browserenv.wirebrowserenv import WireBrowserEnv
 
 
-class FinlandPostEnv(WireBrowserEnv):
+class HttpbinEnv(WireBrowserEnv):
 
     def __init__(self, *args, **kwargs):
 
@@ -67,7 +67,7 @@ class FinlandPostEnv(WireBrowserEnv):
 if __name__ == "__main__":
     st = time()
 
-    env = FinlandPostEnv()
+    env = HttpbinEnv()
     result = env.get_result()
     print(result)
 

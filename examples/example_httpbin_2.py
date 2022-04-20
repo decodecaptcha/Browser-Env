@@ -12,7 +12,7 @@ from browserenv.wirebrowserenv_uc import WireBrowserEnvUC as WBEUC
 # from browserenv.wirebrowserenv import WireBrowserEnv
 
 
-class FinlandPostEnv(WBEUC):
+class HttpbinEnv(WBEUC):
 
     def __init__(self, *args, **kwargs):
 
@@ -65,7 +65,7 @@ class FinlandPostEnv(WBEUC):
 if __name__ == "__main__":
     st = time()
 
-    env = FinlandPostEnv()
+    env = HttpbinEnv()
     result = env.get_result()
     print(result)
 
