@@ -66,7 +66,7 @@ class WireBrowserEnvUC(WireBrowserEnv):
     def set_driver(self):
         self.driver = uc.Chrome(
             options=self.options,
-            version_main=98, # 自己浏览器版本
+            version_main=92, # 注意填写自己浏览器版本
             log_level=3,
             delay=0,
             seleniumwire_options={}
@@ -111,7 +111,7 @@ if __name__ == "__main__":
         intercept_url=interceptor_url, 
         intercept_mode='modify',
         intercept_params=intercept_params,
-        headless=True, 
+        headless=False, 
         images_enabled=False, 
         incognito=True, 
         stealth=False, 

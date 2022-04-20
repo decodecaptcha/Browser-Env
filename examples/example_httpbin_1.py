@@ -8,7 +8,6 @@ import sys
 from time import time
 sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 
-# from browserenv.wirebrowserenv_uc import WireBrowserEnvUC as WBEUC
 from browserenv.wirebrowserenv import WireBrowserEnv
 
 

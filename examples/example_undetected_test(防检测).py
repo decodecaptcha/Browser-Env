@@ -1,7 +1,3 @@
-# import os
-# import sys
-# import time
-# sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 from time import time
 import seleniumwire.undetected_chromedriver as uc
 from selenium.webdriver.chrome.options import Options
