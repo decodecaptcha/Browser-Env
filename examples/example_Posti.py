@@ -10,9 +10,10 @@ from time import time
 sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 
 from browserenv.wirebrowserenv import WireBrowserEnv
+# from browserenv.wirebrowserenv_uc import WireBrowserEnvUC as WBEUC
 
 
-class HttpbinEnv(WireBrowserEnv):
+class PostiEnv(WireBrowserEnv):
 
     def __init__(self, *args, **kwargs):
 
@@ -23,7 +24,7 @@ class HttpbinEnv(WireBrowserEnv):
                             intercept_url=self.intercept_url,
                             intercept_mode=self.intercept_mode,
                             intercept_params=self.intercept_params,
-                            # 更多详细设置
+                            # 更多设置
                             headless=self.headless, 
                             images_enabled=self.images_enabled,
                             incognito=self.incognito,
@@ -35,12 +36,19 @@ class HttpbinEnv(WireBrowserEnv):
                             *args, **kwargs)
 
     def set_params(self):
-        self.url = 'https://httpbin.org/ip'
-        self.intercept_url = 'https://httpbin.org/ip'
-        self.script = 'return window.document.body.innerHTML'
+        self.url = 'https://www.posti.fi/fi/seuranta'
+        self.intercept_url = 'https://www.posti.fi/featureEmbed'
+        old_text = 'case 0:return n=t.id_token'
+        new_text = 'case 0:window.__tokens={"id_token": t.id_token, "role_token": t.role_tokens[0].token};return n=t.id_token'
+        self.script = 'return window.__tokens'
+        self.delay_time = 10
 
-        old_text = 'origin'
-        new_text = '这是已经替换的页面'
+        # self.url = 'https://httpbin.org/ip'
+        # self.intercept_url = 'https://httpbin.org/ip'
+        # self.script = 'return window.document.body.innerHTML'
+        # old_text = 'origin'
+        # new_text = '这是已经替换的页面'
+        # self.delay_time=0
 
         self.intercept_enabled = True
         self.intercept_mode = 'modify'
@@ -50,12 +58,11 @@ class HttpbinEnv(WireBrowserEnv):
         }
         self.headless=False
         self.images_enabled=False 
-        self.incognito=True
+        self.incognito=False
         self.stealth=False
         self.proxy=None
         self.wait_for=''
-        self.delay_time=0
-        self.timeout=20
+        self.timeout = 20
 
 
     def get_result(self):
@@ -66,7 +73,7 @@ class HttpbinEnv(WireBrowserEnv):
 if __name__ == "__main__":
     st = time()
 
-    env = HttpbinEnv()
+    env = PostiEnv()
     result = env.get_result()
     print(result)
 

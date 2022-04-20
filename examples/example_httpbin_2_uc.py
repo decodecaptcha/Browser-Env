@@ -8,11 +8,11 @@ import sys
 from time import time
 sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 
-from browserenv.wirebrowserenv import WireBrowserEnv
-# from browserenv.wirebrowserenv_uc import WireBrowserEnvUC as WBEUC
+# from browserenv.wirebrowserenv import WireBrowserEnv
+from browserenv.wirebrowserenv_uc import WireBrowserEnvUC as WBEUC
 
 
-class HttpbinEnv(WireBrowserEnv):
+class HttpbinEnv(WBEUC):
 
     def __init__(self, *args, **kwargs):
 
@@ -39,6 +39,7 @@ class HttpbinEnv(WireBrowserEnv):
             'modify_old_text': old_text,
             'modify_new_text': new_text,
         }
+
 
     def get_result(self):
         result = self.execute_script(self.script)

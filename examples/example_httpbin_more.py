@@ -6,12 +6,14 @@
 import os
 import sys
 from time import time
+
 sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 
-from browserenv.wirebrowserenv_uc import WireBrowserEnvUC as WBEUC
+from browserenv.wirebrowserenv import WireBrowserEnv
+# from browserenv.wirebrowserenv_uc import WireBrowserEnvUC as WBEUC
 
 
-class HttpbinEnv(WBEUC):
+class HttpbinEnv(WireBrowserEnv):
 
     def __init__(self, *args, **kwargs):
 
@@ -34,6 +36,7 @@ class HttpbinEnv(WBEUC):
                             *args, **kwargs)
 
     def set_params(self):
+        # 需同时在 super().__init__ 中添加该项
         self.url = 'https://httpbin.org/ip'
         self.intercept_url = 'https://httpbin.org/ip'
         self.script = 'return window.document.body.innerHTML'
@@ -45,16 +48,17 @@ class HttpbinEnv(WBEUC):
         self.intercept_mode = 'modify'
         self.intercept_params={
             'modify_old_text': old_text,
-            'modify_new_text': new_text,
+            'modify_new_text': new_text
         }
-        self.headless=False
+        self.headless=True
         self.images_enabled=False 
         self.incognito=True
         self.stealth=False
         self.proxy=None
         self.wait_for=''
-        self.delay_time=0
+        self.delay_time=3
         self.timeout=20
+
 
     def get_result(self):
         result = self.execute_script(self.script)

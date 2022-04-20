@@ -49,3 +49,12 @@ Chrome 浏览器应用版本 92.0.4515.159
 
 解决方法：
     直接注释掉 # from __future__ import annotations 即可
+
+问题:
+    selenium.common.exceptions.WebDriverException: Message: unknown error: cannot connect to chrome at 127.0.0.1:52693
+    from session not created: This version of ChromeDriver only supports Chrome version xxx
+    Current browser version is 92.0.4515.159
+
+解决方法：
+    wirebrowserenv_uc.py 中 修改 version_main=xxx, # 注意填写自己浏览器版本
+    例如 version_main=92
