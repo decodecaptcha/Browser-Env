@@ -43,13 +43,6 @@ class PostiEnv(WireBrowserEnv):
         self.script = 'return window.__tokens'
         self.delay_time = 10
 
-        # self.url = 'https://httpbin.org/ip'
-        # self.intercept_url = 'https://httpbin.org/ip'
-        # self.script = 'return window.document.body.innerHTML'
-        # old_text = 'origin'
-        # new_text = '这是已经替换的页面'
-        # self.delay_time=0
-
         self.intercept_enabled = True
         self.intercept_mode = 'modify'
         self.intercept_params={
