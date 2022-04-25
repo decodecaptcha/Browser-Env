@@ -4,7 +4,6 @@
 # @Date : 2022-04-07
 
 import os
-from pickle import FALSE
 import sys
 from time import time
 sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
@@ -34,7 +33,8 @@ class FedexEnv(WBEUC):
                             *args, **kwargs)
 
     def set_params(self):
-        # self.url = 'https://bot.sannysoft.com/'
+        self.url = 'https://bot.sannysoft.com/'
+        # self.url = 'https://www.fedex.com/fedextrack/'
         self.url = 'https://www.fedex.com/zh-cn/home.html'
         self.intercept_url = 'https://www.fedex.com/B1QQCx/6JB8VT/jWa0Gb/CCk0/SeKFo/L3N9LLmhQ1EY/E0B3bzkhJAE/RS5tRgxn/ZUA'
         mock_headers ={
@@ -62,10 +62,10 @@ class FedexEnv(WBEUC):
 
         self.headless = False
         self.images_enabled = True
-        self.incognito = False
+        self.incognito = True
         self.stealth = False
         self.wait_for = '//input[@name="trackingnumber"]'
-        self.delay_time = 60
+        self.delay_time = 10
         self.timeout = 120
 
 
@@ -89,12 +89,12 @@ class FedexEnv(WBEUC):
 
 if __name__ == "__main__":
     st = time()
-    try:
-        env = FedexEnv()
-        result = env.get_result()
-        print(result)
-    except Exception as e:
-        print(e)
+    # try:
+    env = FedexEnv()
+    result = env.get_result()
+    print(result)
+    # except Exception as e:
+    #     print(e)
 
     print('use time:', time() - st)
     # input()
