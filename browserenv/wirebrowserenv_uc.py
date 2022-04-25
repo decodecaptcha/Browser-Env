@@ -56,9 +56,9 @@ class WireBrowserEnvUC(WireBrowserEnv):
                             # intercept_params=intercept_params,
                             *args, **kwargs)
 
-    # def __del__(self):
-    #     # undetected 模式会自动关闭 driver
-    #     pass
+    def __del__(self):
+        # undetected 模式会自动关闭 driver
+        pass
 
     def set_options(self):
         return uc.ChromeOptions()
@@ -79,44 +79,46 @@ class WireBrowserEnvUC(WireBrowserEnv):
         return self.driver
 
 
-# if __name__ == "__main__":
-#     st = time.time()
+if __name__ == "__main__":
+    st = time.time()
+    url = 'https://bot.sannysoft.com/'
+    # url = 'https://httpbin.org/ip'
+    intercept_url = 'https://httpbin.org/ip'
+    wait_for = ''
+    old_text = 'origin'
+    new_text = '这是已经替换的页面'
+    script = 'return window.document.body.innerHTML'
+    delay_time = 0
 
-#     url = 'https://httpbin.org/ip'
-#     intercept_url = 'https://httpbin.org/ip'
-#     wait_for = ''
-#     old_text = 'origin'
-#     new_text = '这是已经替换的页面'
-#     script = 'return window.document.body.innerHTML'
-#     delay_time = 0
 
+    intercept_mode = 'modify'
+    intercept_params={
+        'modify_old_text': old_text,
+        'modify_new_text': new_text,
+    }
+    wbe = WireBrowserEnvUC(
+        url=url, 
+        intercept_enabled=False, 
+        intercept_url=intercept_url, 
+        intercept_mode='modify',
+        intercept_params=intercept_params,
+        headless=False, 
+        images_enabled=False, 
+        incognito=False, 
+        stealth=False, 
+        proxy=None, 
+        wait_for=None, 
+        delay_time=delay_time, 
+        timeout=20
+    )
+    result = wbe.execute_script(script)
+    print(result if result else 'None')
 
-#     intercept_mode = 'modify'
-#     intercept_params={
-#         'modify_old_text': old_text,
-#         'modify_new_text': new_text,
-#     }
-#     wbe = WireBrowserEnvUC(
-#         url=url, 
-#         intercept_enabled=True, 
-#         intercept_url=intercept_url, 
-#         intercept_mode='modify',
-#         intercept_params=intercept_params,
-#         headless=False, 
-#         images_enabled=False, 
-#         incognito=False, 
-#         stealth=False, 
-#         proxy=None, 
-#         wait_for=None, 
-#         delay_time=delay_time, 
-#         timeout=20
-#     )
-#     result = wbe.execute_script(script)
-#     print(result if result else 'None')
-
-#     print("启动耗时: ", time.time() - st)
+    print("启动耗时: ", time.time() - st)
 
 # TODO:
+# 测试url: 'https://bot.sannysoft.com/'
+
 # 测试url 'https://httpbin.org/ip'
 # WireBrowserEnvUC, intercept_enabled=True, headless=False 启动耗时: 启动耗时:  22.395836353302002
 # WireBrowserEnvUC, intercept_enabled=True, headless=True , 启动耗时: 启动耗时:  20.88762640953064

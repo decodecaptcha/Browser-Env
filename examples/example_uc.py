@@ -10,7 +10,9 @@ import seleniumwire.undetected_chromedriver.v2 as uc
 class UC():
 
     def __init__(self):
-        url = 'https://httpbin.org/ip'
+        # url = 'https://httpbin.org/ip'
+        url = 'https://bot.sannysoft.com/'
+
         self.options = uc.ChromeOptions()
         self.driver = uc.Chrome(
             options=self.options,
