@@ -10,8 +10,9 @@ import seleniumwire.undetected_chromedriver.v2 as uc
 class UC():
 
     def __init__(self):
-        # url = 'https://httpbin.org/ip'
-        url = 'https://bot.sannysoft.com/'
+        # url = 'https://httpbin.org/ip' # ip address
+        # url = 'https://bot.sannysoft.com/' # bot检测
+        url = "https://nowsecure.nl"    # 五秒盾
 
         self.options = uc.ChromeOptions()
         self.driver = uc.Chrome(
@@ -45,4 +46,5 @@ class UC():
 if __name__ == "__main__":
     st = time.time()
     UC()
+    input()
     print("启动耗时: ", time.time() - st)
