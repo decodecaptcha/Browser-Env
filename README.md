@@ -27,7 +27,6 @@ Chrome 浏览器应用版本 92.0.4515.159
     拦截请求和响应
     即时修改标题、参数、正文内容
 
-轮子来源于: https://github.com/wkeeling/selenium-wire
 
 # wirebrowserenv_uc
 对 undetected-chromedriver 的集成,
@@ -40,7 +39,6 @@ Chrome 浏览器应用版本 92.0.4515.159
 作用:
     执行js脚本
 
-轮子来源于: https://github.com/sqreen/PyMiniRacer
 
 # 报错
 问题:
@@ -58,3 +56,9 @@ Chrome 浏览器应用版本 92.0.4515.159
 解决方法：
     wirebrowserenv_uc.py 中 修改 version_main=xxx, # 注意填写自己浏览器版本
     例如 version_main=92
+
+## 感谢
+
+* [PyMiniRacer](https://github.com/sqreen/PyMiniRacer)
+* [selenium-wire](https://github.com/wkeeling/selenium-wire)
+* [undetected-chromedriver](https://github.com/ultrafunkamsterdam/undetected-chromedriver)
