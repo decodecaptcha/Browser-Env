@@ -64,10 +64,13 @@ class HttpbinEnv(WireBrowserEnv):
         # 目标 js 地址https://t.captcha.qq.com/vm-slide.e201876f.enc.js
         self.intercept_url = 'https://t.captcha.qq.com/vm-slide'
 
-        self.script = '__TENCENT_CHAOS_STACK'
+        self.script = 'window.__TCV'
 
-        old_text = '__TENCENT_CHAOS_VM(g,m,U,n,E,F,Y,c){'
-        new_text = '__TENCENT_CHAOS_VM(g,m,U,n,E,F,Y,c){debugger;' # 加了debugger为啥还不能断住
+        old_text = '11111111'
+        new_text = '11111111'
+        # old_text = 'return __TENCENT_CHAOS_VM.v=0'
+        # new_text = '__TENCENT_CHAOS_VM(g,m,U,n,E,F,Y,c){setInterval(function () { debugger }, 100);' # 加了debugger为啥还不能断住
+        # new_text = 'window.__TCV = __TENCENT_CHAOS_VM;return __TENCENT_CHAOS_VM.v=0'
 
         self.intercept_enabled = True
         self.intercept_mode = 'modify'
@@ -107,6 +110,13 @@ class HttpbinEnv(WireBrowserEnv):
         print(result)
         desc  = result.get('result') .get('description') if result.get('result') else ''
         print(desc)
+
+        input()
+
+        self.driver.set_network_conditions(offline=True, latency=1000, throughput=500 * 1024) # offline=True 断网
+        # self.driver.set_network_conditions(offline=False, latency=0, throughput=500 * 1024)
+        print(self.driver.get_network_conditions())
+        # self.driver.get('https://www.baidu.com')
         return desc
 
 
