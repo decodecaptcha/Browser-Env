@@ -67,5 +67,6 @@ Chrome 浏览器应用版本 92.0.4515.159
 # 感谢
 
 * [PyMiniRacer](https://github.com/sqreen/PyMiniRacer)
+* [selenium](https://github.com/SeleniumHQ/selenium)
 * [selenium-wire](https://github.com/wkeeling/selenium-wire)
 * [undetected-chromedriver](https://github.com/ultrafunkamsterdam/undetected-chromedriver)
