@@ -15,6 +15,13 @@ undetected-chromedriver==3.0.6
 selenium==3.141.0
 Chrome 浏览器应用版本 92.0.4515.159
 
+
+# chrome_remote 推荐
+远程 chrome 浏览器环境, 执行js脚本
+原理: chrome 可执行文件 使用启动选项 remote-debugging-port 打开 chrome 浏览器调试端口, 相当于打开一个调试服务, 客户端填写 debuggerAddress 连接, 这些 selenium 已经都有集成的了
+由于是浏览器是命令行方式启动, 这和平常手动启动浏览器基本没有差别, 自然就绕过各种 webdriver 属性, 自动化工具检测
+扣出来的js, 再也不用花几小时补环境, 抛弃execjs, nodejs
+
 # browserenv
 基础的浏览器环境, 用于高度模拟 真实浏览器环境 执行js脚本
 或对付 SecurityWorker, jsmvp 类型加固
