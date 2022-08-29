@@ -4,26 +4,44 @@ Web crawlers use the real browser environment.
 本项目不重复造轮子, 而是对已有的开源项目进行封装和集成, 使其适用于复杂多样的 Spider 项目需求.
 
 依赖要求:
+windows 系统
+
 Python 3.6+
+
 selenium 3.4.0+
+
 Chrome 浏览器应用版本 92+
 
-本人实测的依赖版本:
+本人实测:
+windows 10 专业版
+
 Python 3.6.9
+
 selenium-wire==4.6.0
+
 undetected-chromedriver==3.0.6
+
 selenium==3.141.0
+
 Chrome 浏览器应用版本 92.0.4515.159
 
 
 # chrome_remote 推荐
 远程 chrome 浏览器环境, 执行js脚本
-原理: chrome 可执行文件 使用启动选项 remote-debugging-port 打开 chrome 浏览器调试端口, 相当于打开一个调试服务, 客户端填写 debuggerAddress 连接, 这些 selenium 已经都有集成的了
+
+原理: 
+
+chrome 可执行文件 使用启动选项 remote-debugging-port 打开 chrome 浏览器调试端口, 
+
+相当于打开一个调试服务, 客户端填写 debuggerAddress 连接, 这些 selenium 已经都有集成的了
+
 由于是浏览器是命令行方式启动, 这和平常手动启动浏览器基本没有差别, 自然就绕过各种 webdriver 属性, 自动化工具检测
-扣出来的js, 再也不用花几小时补环境, 抛弃execjs, nodejs
+
+辛苦扣出来的js, 再也不用花几小时补环境, 该怎么抛弃execjs, nodejs ?
 
 # browserenv
 基础的浏览器环境, 用于高度模拟 真实浏览器环境 执行js脚本
+
 或对付 SecurityWorker, jsmvp 类型加固
 
 # wirebrowserenv
@@ -36,9 +54,10 @@ Chrome 浏览器应用版本 92.0.4515.159
 
 
 # wirebrowserenv_uc
-对 undetected-chromedriver 的集成,
-优化的 Selenium Chromedriver 补丁,
+对 undetected-chromedriver 的集成, 优化的 Selenium Chromedriver 补丁,
+
 不会触发 Distill Network / Imperva / DataDome / Botprotect.io 等反僵尸服务,
+
 自动下载驱动程序二进制文件并对其进行修补。
 
 # v8env
