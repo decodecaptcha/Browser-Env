@@ -1,15 +1,11 @@
 # -*- coding: utf-8 -*-
-import json
 import logging
 import platform
-import re
 import socket
 import subprocess
 from time import sleep
 
 import psutil
-import requests
-import websocket
 
 logging.basicConfig(level=logging.NOTSET)
 logger = logging.getLogger(__name__)

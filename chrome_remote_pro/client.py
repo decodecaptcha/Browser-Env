@@ -2,12 +2,6 @@
 import json
 import requests
 import websocket
-# import logging
-# from time import sleep
-
-
-# logging.basicConfig(level=logging.NOTSET)
-# logger = logging.getLogger(__name__)
 
 
 class BrowserEnvClient(object):
