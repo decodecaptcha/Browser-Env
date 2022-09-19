@@ -20,7 +20,7 @@ class BrowserEnvServer(object):
         self.child_pid = None
         self.process = None
         self.is_linux = None
-        self.is_linux = self.is_linux_system()
+        self.is_linux = self.is_linux_system()              # 区分当前操作系统
         if self.is_linux:
             self.options = [
                 self.path,
