@@ -26,7 +26,10 @@ selenium==3.141.0
 Chrome 浏览器应用版本 92.0.4515.159
 
 
-# chrome_remote 推荐
+# chrome_remote_pro 推荐
+2022-09-19 更新: 客户端不再使用 selenium 库, 基于chrome cdp协议 重写了一个客户端连接, 更少的依赖, 更高效
+
+# chrome_remote
 远程 chrome 浏览器环境, 执行js脚本
 
 原理: 
