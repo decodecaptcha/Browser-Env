@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import time
 import requests
 import websocket
 
@@ -14,6 +15,7 @@ class BrowserEnvClient(object):
         self.wsobj = None
         self.wsurl = None
         self.update_connect()
+        # self.connect()
 
     def __del__(self):
         if isinstance(self.wsobj, websocket._core.WebSocket):
@@ -32,6 +34,11 @@ class BrowserEnvClient(object):
         tabs = json.loads(response.text)
         wsurl = tabs[0]['webSocketDebuggerUrl']
         return wsurl
+
+    def connect(self):
+        self.wsurl = self.get_wsurl()
+        self.wsobj = websocket.create_connection(self.wsurl)
+        self.wsobj.settimeout(self.timeout)
 
     def update_connect(self):
         self.wsurl = self.get_wsurl()
@@ -67,6 +74,25 @@ class BrowserEnvClient(object):
                 };
             deleteAllCookies();""")
 
+    def click(self, css):
+        script = '''
+"use strict";
+var ev = new MouseEvent('click', {
+    cancelable: true,
+    bubble: true,
+    view: window
+});
+document.querySelector('%s').dispatchEvent(ev);
+''' % (css)
+        return self.runtime_evaluate_script(script)
+
+    def send(self, css, text):
+        script = "document.querySelector('%s').value = '%s';" % (css, text)
+        return self.runtime_evaluate_script(script)
+
+    def get_page_source(self):
+        return self.runtime_evaluate_script("document.documentElement.outerHTML;")
+
     def process_message(self):
         """ 处理消息(输入) """
         pass
@@ -77,8 +103,11 @@ class BrowserEnvClient(object):
 
 
 if __name__ == '__main__':
+    # 浏览器不能开启调试工具
     # script = '1+1'
     script = 'window.location.href'
     client = BrowserEnvClient()
     res = client.runtime_evaluate_script(script)
     print(res)
+    html = client.get_page_source()
+    print(html)

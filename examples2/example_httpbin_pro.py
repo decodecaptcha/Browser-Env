@@ -76,7 +76,7 @@ class HttpbinEnv(WireBrowserEnv):
 
     def set_driver(self):
         # 日志等级
-        self.options.add_argument('–disable-gpu')
+        self.options.add_argument('disable-gpu')
         self.options.add_argument('log-level=3')
         # self.options.add_experimental_option('excludeSwitches', ['enable-logging']) # 同时开启 logging 会报错
 

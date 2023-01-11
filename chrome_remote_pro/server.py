@@ -14,17 +14,19 @@ logger = logging.getLogger(__name__)
 class BrowserEnvServer(object):
     """ 浏览器服务对象 """
 
-    def __init__(self, path='google-chrome', port=9222, headless=False):
+    def __init__(self, path='google-chrome', port=9222, headless=False, url='https://httpbin.org/get'):
         self.path = path
         self.port = port
         self.child_pid = None
         self.process = None
         self.is_linux = None
-        self.is_linux = self.is_linux_system()              # 区分当前操作系统
+        self.is_linux = self.is_linux_system()
+        self.url = url
         if self.is_linux:
             self.options = [
                 self.path,
-                'https://httpbin.org/get',                  # 打开一个网页, 模拟标签页面
+                self.url,
+                # 'https://httpbin.org/get',                  # 打开一个网页, 模拟标签页面
                 '--no-sandbox',                             # 取消沙盒模式, 在root权限下跑
                 '--disable-gpu',                            # 谷歌文档提到需要加上这个属性来规避bug
                 '--enable-logging=stderr --vmodule --v=-3', # 禁止所有其他日志记录
@@ -33,7 +35,8 @@ class BrowserEnvServer(object):
         else:
             self.options = [
                 self.path,
-                'https://httpbin.org/get',                  # 打开一个网页, 模拟标签页面
+                self.url,
+                # 'https://httpbin.org/get',                  # 打开一个网页, 模拟标签页面
                 '--enable-logging=stderr --vmodule --v=-3', # 禁止所有其他日志记录
                 f'--remote-debugging-port={self.port}'
             ]
@@ -87,7 +90,7 @@ address: https://github.com/aiden2048
 
         if self.child_pid is None:
             raise ChildProcessError("ChildProcess is empty")
-
+        sleep(2)
         logger.info(
             f"{'-'*20}\n{__class__.__name__} system={self.get_system()}\n{'-'*20}")
         logger.info(f"{__class__.__name__} pid={self.child_pid}\n{'-'*20}")
@@ -122,9 +125,10 @@ address: https://github.com/aiden2048
 if __name__ == '__main__':
     server = BrowserEnvServer(
         # path='google-chrome',
-        path = r'C:\Users\admin\AppData\Local\Google\Chrome\Application\chrome.exe',
+        path = r'"C:\Program Files\Google\Chrome\Application\chrome.exe"',
         port=9222,
-        headless=False
+        headless=False,
+        url='https://www.dhl.com/global-en/home/tracking.html'
     )
     server.start()
     input()
