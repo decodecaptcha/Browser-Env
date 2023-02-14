@@ -75,6 +75,7 @@ class BrowserEnvClient(object):
             deleteAllCookies();""")
 
     def click(self, css):
+        """ 鼠标点击 """
         script = '''
 "use strict";
 var ev = new MouseEvent('click', {
@@ -87,6 +88,7 @@ document.querySelector('%s').dispatchEvent(ev);
         return self.runtime_evaluate_script(script)
 
     def send(self, css, text):
+        """ 输入框输入 """
         script = "document.querySelector('%s').value = '%s';" % (css, text)
         return self.runtime_evaluate_script(script)
 
