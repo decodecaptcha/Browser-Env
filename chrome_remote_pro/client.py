@@ -92,7 +92,8 @@ document.querySelector('%s').dispatchEvent(ev);
         script = "document.querySelector('%s').value = '%s';" % (css, text)
         return self.runtime_evaluate_script(script)
 
-    def get_page_source(self):
+    def get_html(self):
+        """ 获取页面 html 元素 """
         return self.runtime_evaluate_script("document.documentElement.outerHTML;")
 
     def process_message(self):
@@ -111,5 +112,5 @@ if __name__ == '__main__':
     client = BrowserEnvClient()
     res = client.runtime_evaluate_script(script)
     print(res)
-    html = client.get_page_source()
+    html = client.get_html()
     print(html)
