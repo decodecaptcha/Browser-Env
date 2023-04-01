@@ -26,6 +26,22 @@ selenium==3.141.0
 Chrome 浏览器应用版本 92.0.4515.159
 
 
+# jsenv 推荐
+* 2023-04-01 更新: 更优雅的方式 异步/同步调用 nodejs 环境， 补环境
+
+需要依赖：
+
+安装 nodejs 环境
+
+* [nodejs](https://nodejs.org/zh-cn)
+
+同时自定义 DOM 环境，需安装 jsdom 或者 canvas
+
+npm install jsdom
+
+npm install canvas
+
+
 # chrome_remote_pro 推荐
 * 2023-02-15 更新: 客户端 添加新功能 click, send, get_html 分别实现鼠标点击, 输入框输入, 获取页面元素等基础操作, 并使用 CSS 语法来定位
 * 2022-09-19 更新: 客户端不再使用 selenium 库, 基于chrome cdp协议 重写了一个客户端连接, 更少的依赖, 更高效
